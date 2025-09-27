@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    container_name: chat-backend-dev
+    command: uvicorn api_server:api --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./backend:/app
+      - ./runtime_data/backend:/app/data
+    environment:
+      - SUMMARY_FILE=/app/data/summary.txt
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+
+  frontend:
+    image: node:20     # ✅ 开发时用 Node 镜像
+    working_dir: /app
+    volumes:
+      - ./frontend:/app          # 挂载源码
+      - /app/node_modules        # 防止 node_modules 被覆盖
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend

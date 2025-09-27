@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    container_name: chat-backend
+    command: uvicorn api_server:api --host 0.0.0.0 --port 8000
+    volumes:
+      - ./runtime_data/backend:/app/data
+    environment:
+      - SUMMARY_FILE=/app/data/summary.txt
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+
+  frontend:
+    build: ./frontend     # ✅ 用 Nginx 托管静态文件
+    container_name: chat-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  backend_data: {}

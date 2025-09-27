@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== 聊天气泡样式 ===== */
+.chat-bubble {
+  @apply px-4 py-2 rounded-lg max-w-[70%] shadow break-words;
+}
+
+.chat-user {
+  @apply bg-user text-white self-end ml-auto;
+}
+
+.chat-bot {
+  @apply bg-bot text-gray-900 self-start mr-auto;
+}
+
+/* ===== 滚动条优化 ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                       // 使用最新的 ES 语法
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // 支持浏览器 API
+    "jsx": "react-jsx",                       // React 18 推荐配置
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,                  // ✅ 允许默认导入 React 等
+    "allowSyntheticDefaultImports": true,     // ✅ 兼容旧写法 import React from "react"
+    "strict": true,                           // 开启严格模式
+    "skipLibCheck": true,                     // 跳过库类型检查，加快构建
+    "forceConsistentCasingInFileNames": true  // 强制文件名大小写一致
+  },
+  "include": ["src"],                         // 只编译 src/ 下的文件
+  "references": []
+}
