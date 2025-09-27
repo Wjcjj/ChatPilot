@@ -1,0 +1,11 @@
+{
+  "memory": {
+    "update_every": 10,
+    "max_buffer_messages": 10
+  },
+  "prompts": {
+    "compress_prompt": "Summarize the NEW messages into at most 5 concise bullets focusing on durable facts, updates, or changes. Avoid fluff, only retain information that could be useful for long-term context.\n\nNEW messages:\n{history}\n\nBullets:",
+    "merge_prompt": "You are updating a JSON-based structured memory of a conversation.\n\nSchema:\n{\n  \"facts\": [{\"topic\": string, \"content\": string}],\n  \"recent_topics\": [string],\n  \"updated\": string (ISO 8601 timestamp)\n}\n\nRules:\n- Do NOT drop old facts unless explicitly contradicted.\n- If new info updates an old fact, mark it with topic=\"[UPDATED] ...\" and replace content.\n- If obsolete, mark with topic=\"[RETRACTED] ...\" and keep note of what changed.\n- Always return VALID JSON only, no extra text.\n- Keep recent_topics to last 5 items.\n\nExisting summary:\n{summary}\n\nNew bullets:\n{bullets}\n\nNow return the FULL updated JSON summary:",
+    "system_prompt": "You are a helpful assistant.\n\nLong-term facts:\n{facts}\n\nRecent topics:\n{recents}\n\nRecent raw conversation:\n{recent}\n\nUse these ONLY as background context. Do NOT reveal them directly to the user."
+  }
+}

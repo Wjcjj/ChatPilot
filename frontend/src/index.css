@@ -1,28 +1,132 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 页面整体 */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 700px;
+  margin: auto;
+  padding: 1rem;
+  font-family: "Segoe UI", sans-serif;
+  background: #f9fafb;
+}
 
-/* ===== 聊天气泡样式 ===== */
+/* 聊天窗口 */
+.chat-window {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* 气泡 */
 .chat-bubble {
-  @apply px-4 py-2 rounded-lg max-w-[70%] shadow break-words;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  max-width: 80%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .chat-user {
-  @apply bg-user text-white self-end ml-auto;
+  align-self: flex-end;
+  background: #3b82f6;
+  color: white;
 }
 
-.chat-bot {
-  @apply bg-bot text-gray-900 self-start mr-auto;
+.chat-assistant {
+  align-self: flex-start;
+  background: #f3f4f6;
+  color: #111827;
 }
 
-/* ===== 滚动条优化 ===== */
-::-webkit-scrollbar {
-  width: 6px;
+/* 输入区域 */
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
-::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.3);
-  border-radius: 3px;
+
+.chat-input {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  resize: none;
+  font-size: 0.95rem;
 }
-::-webkit-scrollbar-track {
-  background: transparent;
+
+/* 按钮样式 */
+.btn {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+/* 记忆展示框 */
+.summary-box {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  font-family: monospace;
+  font-size: 0.85rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* 打字中动画 */
+.typing-indicator {
+  display: flex;
+  gap: 0.25rem;
+}
+.typing-indicator span {
+  animation: blink 1.2s infinite;
+}
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink {
+  0%, 80%, 100% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
 }

@@ -4,3 +4,4 @@ langchain
 langchain-openai
 langgraph
 python-dotenv
+json_repair
